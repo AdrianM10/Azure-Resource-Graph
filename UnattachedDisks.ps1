@@ -1,4 +1,4 @@
-# Retrieve a list of unattached disks across all subscriptions
+# Retrieve a list of unattached disks across all subscriptions 
 
 Search-AzGraph -Query "Resources
             | where type =~ 'Microsoft.Compute/disks'
