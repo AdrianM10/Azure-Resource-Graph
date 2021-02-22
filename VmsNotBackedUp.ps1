@@ -5,6 +5,6 @@ Connect-AzAccount
 
 Search-AzGraph -Query "advisorresources
 	| where type == 'microsoft.advisor/recommendations'
-	| where properties.impactedField == 'Microsoft.Compute/virtualMachines'
-	| where properties.shortDescription.solution =~ 'Enable virtual machine backup to protect your data from corruption and accidental deletion'
-	| project VM_Name = tostring(properties.impactedValue), Category = tostring(properties.category), resourceGroup, subscriptionId, tenantId"
+	| where properties['category'] == 'Security'
+	| where properties.shortDescription.solution == 'Azure Backup should be enabled for virtual machines'
+	| project VM_Name = tostring(properties.impactedValue), resourceGroup, tenantId, Recommendation = tostring(properties.shortDescription.solution)" 
